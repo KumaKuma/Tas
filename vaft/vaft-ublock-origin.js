@@ -252,9 +252,12 @@ twitch-videoad.js text/javascript
                             //Here we check the m3u8 for any ads and also try fallback player types if needed.
                             var responseText = await response.text();
                             var weaverText = null;
-                            weaverText = await processM3U8(url, responseText, realFetch, PlayerType2);
+                            weaverText = await processM3U8(url, responseText, realFetch, 'site');
                             if (weaverText.includes(AdSignifier)) {
-                                weaverText = await processM3U8(url, responseText, realFetch, PlayerType3);
+                            weaverText = await processM3U8(url, responseText, realFetch, PlayerType2);
+                            }
+                            if (weaverText.includes(AdSignifier)) {
+                            weaverText = await processM3U8(url, responseText, realFetch, PlayerType3);
                             }
                             if (weaverText.includes(AdSignifier)) {
                                 weaverText = await processM3U8(url, responseText, realFetch, PlayerType4);
